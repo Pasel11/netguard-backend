@@ -6,7 +6,6 @@ on:
 
 env:
   NODE_VERSION: '20'
-  BUN_VERSION: '1.1.0'
 
 jobs:
   build:
@@ -20,7 +19,9 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
-      - run: bun install
+      - name: Remove lockfile for fresh install
+        run: rm -f bun.lockb package-lock.json yarn.lock
+      - run: bun install --no-save
       - run: bun run lint || true
       - run: bun run build
         env:
