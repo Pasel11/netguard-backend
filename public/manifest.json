@@ -1,0 +1,21 @@
+{
+  "name": "NetGuard Pro",
+  "short_name": "NetGuard",
+  "description": "أداة احترافية لفحص أمان شبكات WiFi - فحص البورتات، تحليل كلمات المرور، كشف ثغرات الراوتر",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0a0a0a",
+  "theme_color": "#0a0a0a",
+  "lang": "ar",
+  "dir": "rtl",
+  "categories": ["utilities", "productivity", "security"],
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

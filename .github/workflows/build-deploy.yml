@@ -1,0 +1,27 @@
+name: Build & Deploy Backend
+
+on:
+  push:
+    branches: [main, master]
+
+env:
+  NODE_VERSION: '20'
+  BUN_VERSION: '1.1.0'
+
+jobs:
+  build:
+    name: Build Backend
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: '1.1.0'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: bun install
+      - run: bun run lint || true
+      - run: bun run build
+        env:
+          NEXT_TELEMETRY_DISABLED: 1
