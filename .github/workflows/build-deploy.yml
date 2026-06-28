@@ -13,16 +13,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: oven-sh/setup-bun@v2
-        with:
-          bun-version: '1.1.0'
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
-      - name: Remove lockfile for fresh install
-        run: rm -f bun.lockb package-lock.json yarn.lock
-      - run: bun install --no-save
-      - run: bun run lint || true
-      - run: bun run build
+          cache: 'npm'
+      - name: Install dependencies
+        run: |
+          rm -f bun.lockb package-lock.json yarn.lock
+          npm install --legacy-peer-deps
+      - name: Build Next.js
+        run: npm run build
         env:
           NEXT_TELEMETRY_DISABLED: 1
